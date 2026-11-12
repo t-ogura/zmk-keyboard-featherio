@@ -1,0 +1,8 @@
+file_format: "1"
+id: featherio
+name: Featherio
+type: shield
+requires: [seeed_xiao]
+features:
+  - keys
+  - pointer

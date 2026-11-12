@@ -1,0 +1,74 @@
+manifest:
+  defaults:
+    revision: main
+  remotes:
+    - name: cormoran
+      url-base: https://github.com/cormoran
+    - name: sekigon-gonnoc
+      url-base: https://github.com/sekigon-gonnoc
+    - name: prospector
+      url-base: https://github.com/t-ogura
+    - name: caksoylar
+      url-base: https://github.com/caksoylar
+  projects:
+    # ZMK: cormoran fork, main+dya = ZMK main (Zephyr 4.1) base with DYA Studio RPC
+    - name: zmk
+      remote: cormoran
+      revision: main+dya
+      import: app/west.yml
+    # LPPS pointing stick driver (commit checked in the hardware handoff)
+    - name: zmk-driver-lpps
+      remote: sekigon-gonnoc
+      revision: 7a4a67c3868edbe53fce5b96c5085336705efbd2
+    # RGB LED widget (XIAO on-board LED status)
+    - name: zmk-rgbled-widget
+      remote: caksoylar
+    # DYA Studio modules (main = v4-compatible)
+    - name: zmk-module-ble-management
+      remote: cormoran
+    - name: zmk-module-battery-history
+      remote: cormoran
+    - name: zmk-module-settings-rpc
+      remote: cormoran
+    - name: zmk-module-runtime-input-processor
+      remote: cormoran
+    # Typed persistence backend required by runtime-input-processor
+    # since its 2026-07-19 custom-settings-storage merge.
+    - name: zmk-feature-custom-settings
+      remote: cormoran
+    # ---- DYA Studio 2026.08.09.0 feature set (mirrors cormoran's
+    #      zmk-keyboard-dya2 reference config) ----
+    # Fast keymap loading (Studio falls back to official protocol without it)
+    - name: zmk-feature-fast-keymap
+      remote: cormoran
+    # Macro & Combo tab
+    - name: zmk-feature-runtime-combo
+      remote: cormoran
+    - name: zmk-feature-runtime-macro
+      remote: cormoran
+    # Connection tab: OS detection + default-layer selector
+    - name: zmk-feature-os-detection
+      remote: cormoran
+    # NOTE: pinned to the same revision the dya2 reference uses; its main
+    # predates the new Studio's custom-RPC surface.
+    - name: zmk-feature-default-layer
+      remote: cormoran
+      revision: codex/custom-rpc-rewrite
+    # Trackball tab: live sensor streaming
+    - name: zmk-feature-input-stream
+      remote: cormoran
+    # Troubleshooting tab: crash reasons + device info
+    - name: zmk-feature-watchdog
+      remote: cormoran
+    - name: zmk-feature-device-info
+      remote: cormoran
+    # Deadzone input processor
+    - name: zmk-input-processor-deadzone
+      remote: prospector
+    # Prospector
+    - name: prospector-zmk-module
+      remote: prospector
+      revision: main
+      path: modules/prospector-zmk-module
+  self:
+    path: config

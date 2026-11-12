@@ -1,0 +1,6 @@
+if SHIELD_FEATHERIO
+
+config ZMK_KEYBOARD_NAME
+    default "Featherio"
+
+endif

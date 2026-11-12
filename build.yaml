@@ -1,0 +1,19 @@
+---
+include:
+  # Prospector status advertisement enabled (default)
+  - board: xiao_ble/nrf52840/zmk
+    shield: featherio rgbled_adapter
+    snippet: studio-rpc-usb-uart
+    artifact-name: featherio_prospector
+
+  # Prospector disabled
+  - board: xiao_ble/nrf52840/zmk
+    shield: featherio rgbled_adapter
+    snippet: studio-rpc-usb-uart
+    artifact-name: featherio
+    cmake-args: -DCONFIG_ZMK_STATUS_ADVERTISEMENT=n
+
+  # BLE pairing / stored settings reset
+  - board: xiao_ble/nrf52840/zmk
+    shield: settings_reset
+    artifact-name: settings_reset
